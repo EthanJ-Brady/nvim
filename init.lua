@@ -160,6 +160,9 @@ vim.opt.scrolloff = 10
 -- Show relative line numbers
 vim.opt.relativenumber = true
 
+-- Automatically indent new lines based on the previous lines indentation
+vim.opt.smartindent = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

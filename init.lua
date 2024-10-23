@@ -621,9 +621,8 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
-        --
-
+        java_language_server = {},
+        jsonnet_ls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -638,6 +637,8 @@ require('lazy').setup({
             },
           },
         },
+        nil_ls = {},
+        ts_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -652,10 +653,14 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'eslint-lsp', -- Used to lint JS and TS
+        'nil_ls', -- Nix language server
+        'nixpkgs-fmt', -- Used to format nixpkgs
+        'prettierd', -- Used to format JS and TS
+        'jsonnet_ls', --  JSON Language server
+        'jdtls', -- Java language server
         'stylua', -- Used to format Lua code
-        'ts_ls',
-        'eslint-lsp',
-        'prettierd',
+        'ts_ls', -- Typescript language server
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -709,8 +714,9 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
@@ -906,11 +912,14 @@ require('lazy').setup({
         'c',
         'diff',
         'html',
+        'java',
         'javascript',
+        'json',
         'lua',
         'luadoc',
         'markdown',
         'markdown_inline',
+        'nix',
         'query',
         'typescript',
         'vim',

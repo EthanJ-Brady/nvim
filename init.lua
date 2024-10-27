@@ -775,6 +775,9 @@ require('lazy').setup({
             luasnip.lsp_expand(args.body)
           end,
         },
+        experimental = {
+          ghost_text = true,
+        },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
         -- For an understanding of why these mappings were
@@ -838,6 +841,7 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'supermaven' },
         },
       }
     end,

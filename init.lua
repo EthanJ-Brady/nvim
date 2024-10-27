@@ -784,7 +784,17 @@ require('lazy').setup({
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
+        mapping = {
+          -- Close the completion menu when navigating with the arrow keys
+          ['<Down>'] = cmp.mapping(function(fallback)
+            cmp.close()
+            fallback()
+          end, { 'i' }),
+          ['<Up>'] = cmp.mapping(function(fallback)
+            cmp.close()
+            fallback()
+          end, { 'i' }),
+
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
